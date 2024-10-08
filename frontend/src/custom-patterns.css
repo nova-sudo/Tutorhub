@@ -1,0 +1,9 @@
+@layer utilities {
+  .pattern-cross {
+    
+    background-image: url('path_to_your_cross_pattern_image');
+   
+  }
+
+ 
+}

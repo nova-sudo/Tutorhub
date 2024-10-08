@@ -1,0 +1,576 @@
+import React, { useState } from 'react';
+import axios from 'axios';
+
+function Signup() {
+  const [email, setEmail] = useState('');
+  const [userId, setuserId] = useState('');
+  const [password, setPassword] = useState('');
+  const [college, setCollege] = useState('');
+  const [dateOfBirth, setDateOfBirth] = useState('');
+  const [level, setLevel] = useState('');
+  const [selectedTags, setSelectedTags] = useState([]);
+  const [showTagsDropdown, setShowTagsDropdown] = useState(false);
+  const [searchTerm, setSearchTerm] = useState('');
+ const [gender, setGender] = useState('');
+  const tags = [
+    "Artificial Intelligence",
+    "Computer Science",
+    "Data Science",
+    "Web Development",
+    "Software Engineering",
+    "Computer Networking",
+    "Database Systems",
+    "Computer Graphics",
+    "UX/UI Design",
+    "Embedded Systems",
+    "Cryptography",
+    "Quantum Computing",
+    "Blockchain",
+    "Internet of Things",
+    "Machine Learning",
+    "Deep Learning",
+    "Natural Language Processing",
+    "Digital Marketing",
+    "Cloud Computing",
+    "Big Data",
+    "Hadoop",
+    "Spark",
+    "AWS",
+    "Azure",
+    "GCP",
+    "Docker",
+    "Kubernetes",
+    "Linux",
+    "Git",
+    "Python",
+    "Java",
+    "C++",
+    "JavaScript",
+    "PHP",
+    "Ruby",
+    "Swift",
+    "Objective-C",
+    "R",
+    "MATLAB",
+    "Scratch",
+    "Excel",
+    "Word",
+    "PowerPoint",
+    "Microsoft Access",
+    "HTML",
+    "CSS",
+    "Angular",
+    "React",
+    "Vue",
+    "Redux",
+    "Flask",
+    "Django",
+    "Laravel",
+    "Spring",
+    "Hibernate",
+    "TensorFlow",
+    "Pandas",
+    "NumPy",
+    "Scikit-learn",
+    "Jupyter Notebook",
+    "OpenCV",
+    "SOLID",
+    "GRASP",
+    "Singleton",
+    "Observer",
+    "Factory Method",
+    "Prototype",
+    "Bridge",
+    "Composite",
+    "Decorator",
+    "Facade",
+    "Flyweight",
+    "Adapter",
+    "Proxy",
+    "Chain of Responsibility",
+    "Command",
+    "Interpreter",
+    "Iterator",
+    "Mediator",
+    "Memento",
+    "State",
+    "Strategy",
+    "Template Method",
+    "Visitor",
+    "LEAN Startup",
+    "Agile Development",
+    "Scrum",
+    "Kanban",
+    "Lean Software Development",
+    "Spiral Model",
+    "V Model",
+    "Waterfall Model",
+    "Software Requirements",
+    "Software Architecture",
+    "Software Design",
+    "Software Testing",
+    "Software Deployment",
+    "Software Maintenance",
+    "Software Evolution",
+    "Software Process",
+    "Software Engineering Models",
+    "Software Quality",
+    "Software Configuration Management",
+    "Software Project Management",
+    "Software Release Management",
+    "Software Development Lifecycle",
+    "Software Development Methodologies",
+    "Software Development Processes",
+    "Software Development Standards",
+    "Software Development Tools",
+    "Software Development Techniques",
+    "Software Development Methodologies",
+    "Software Development Paradigms",
+    "Software Development Styles",
+    "Software Development Trends",
+    "Software Development Life Cycle Models",
+    "Software Development Frameworks",
+    "Software Development Methods",
+    "Software Development Principles",
+    "Software Development Theories",
+    "Software Development Techniques",
+    "Software Development Values",
+    "Software Development Approaches",
+    "Software Development Best Practices",
+    "Software Development Methodologies",
+    "Software Development Paradigms",
+    "Software Development Patterns",
+    "Software Development Practices",
+    "Software Development Styles",
+    "Software Development Trends",
+    "Software Development Values",
+    "Software Development Metrics",
+    "Software Development Evaluation",
+    "Software Development Estimation",
+    "Software Development Budgeting",
+    "Software Development Resource Management",
+    "Software Development Human Resource Management",
+    "Software Development Organizational Resource Management",
+    "Software Development Team Building",
+    "Software Development Talent Management",
+    "Software Development Workforce Management",
+    "Software Development Skill Management",
+    "Software Development Learning and Development",
+    "Software Development Employee Engagement",
+    "Software Development Employee Satisfaction",
+    "Software Development Performance Management",
+    "Software Development Workflow Management",
+    "Software Development Collaboration",
+    "Software Development Participation",
+    "Software Development Sharing",
+    "Software Development Innovation",
+    "Software Development Experimentation",
+    "Software Development Discovery",
+    "Software Development Risk Management",
+    "Software Development Failure Analysis",
+    "Software Development Root Cause Analysis",
+    "Software Development Debugging",
+    "Software Development Problem Solving",
+    "Software Development Quality Assurance",
+    "Software Development Code Review",
+    "Software Development Test Driven Development",
+    "Software Development Continuous Integration",
+    "Software Development Continuous Deployment",
+    "Software Development DevOps",
+    "Software Development Technical Debt Management",
+    "Software Development Tech Debt",
+    "Software Development Systematic Debt Management",
+    "Software Development Cost-Benefit Analysis",
+    "Software Development Investment Analysis",
+    "Software Development Payback Period",
+    "Software Development Break-Even Point",
+    "Software Development Cash Flow Management",
+    "Software Development Capital Budgeting",
+    "Software Development Zero-Based Budgeting",
+    "Software Development Budget Allocation",
+    "Software Development Budget Execution",
+    "Software Development Budget Control",
+    "Software Development Performance Measurement",
+    "Software Development Benchmarking",
+    "Software Development Metrics Analysis",
+    "Software Development Business Intelligence",
+    "Software Development Decision Making",
+    "Software Development Forecasting",
+    "Software Development Simulation",
+    "Software Development Visualization",
+    "Software Development Modeling",
+    "Software Development Strategy",
+    "Software Development Tactics",
+    "Software Development Grand Strategy",
+    "Software Development Mega Trends",
+    "Software Development Gartner Hype Cycle",
+    "Software Development Futures",
+    "Software Development Emerging Technologies",
+    "Software Development Future of Work",
+    "Software Development Innovation Ecosystem",
+    "Software Development Startup Ecosystem",
+    "Software Development Accelerator Ecosystem",
+    "Software Development Investor Ecosystem",
+    "Software Development Tech Ecosystem",
+    "Software Development Tech Stack",
+    "Software Development Stack Overflow",
+    "Software Development Stack Exchange",
+    "Software Development Developer Ecosystem",
+    "Software Development Research Ecosystem",
+    "Software Development Academia Ecosystem",
+    "Software Development Community Ecosystem",
+    "Software Development Ecosystems",
+    "Software Development Platform Ecosystems",
+    "Software Development Ecosystem Evolution",
+    "Software Development Ecosystem Development",
+    "Software Development Ecosystem Dynamics",
+    "Software Development Ecosystem Modeling",
+    "Software Development Ecosystem Analysis",
+    "Software Development Ecosystem Assessment",
+    "Software Development Ecosystem Prediction",
+    "Software Development Ecosystem Simulation",
+    "Software Development Ecosystem Visualization",
+    "Software Development Ecosystem Metrics",
+    "Software Development Ecosystem Benchmarking",
+    "Software Development Ecosystem Buzz",
+    "Software Development Ecosystem Growth",
+    "Software Development Ecosystem Health",
+    "Software Development Ecosystem Management",
+    "Software Development Ecosystem Strategy",
+    "Software Development Ecosystem Tactics",
+    "Software Development Ecosystem Innovation",
+    "Software Development Ecosystem Participation"
+];
+
+  const handleTagSelection = (tag) => {
+    const index = selectedTags.indexOf(tag);
+    if (index > -1) {
+      const updatedTags = [...selectedTags];
+      updatedTags.splice(index, 1);
+      setSelectedTags(updatedTags);
+    } else {
+      setSelectedTags([...selectedTags, tag]);
+    }
+  };
+   const handleGenderSelection = (selectedGender) => {
+    setGender(selectedGender);
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (selectedTags.length > 0) {
+      
+    try {
+      const response = await axios.post('http://localhost:3301/register', {
+        email,
+        userId,
+        password,
+        college, // Include college in the data sent
+        dateOfBirth, // Include date of birth in the data sent
+        level, // Include level in the data sent
+        gender,
+        tags: selectedTags,
+      }
+      
+      );
+
+      console.log(response.data);
+
+      if (response.data === 'account created') {
+        // Redirect to the login page upon successful signup
+        window.location.href = '/login';
+      }
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  }
+  };
+
+  const filteredTags = tags.filter((tag) =>
+    tag.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+  return (
+    <div className="min-h-screen flex items-center justify-center  py-12 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-md w-full space-y-8">
+        <form onSubmit={handleSubmit} className="mt-8 space-y-6">
+          {/* Tags Selection */}
+          <div className="p-10 max-w-3xl mx-auto">
+            <h2 className="text-4xl font-bold mb-4">Choose tags</h2>
+            <div className="relative">
+              <button
+                onClick={() => setShowTagsDropdown(!showTagsDropdown)}
+                className="w-full p-2 border border-gray-300 rounded text-left"
+              >
+                {selectedTags.length > 0
+                  ? selectedTags.join(', ')
+                  : 'Select tags'}
+              </button>
+              {showTagsDropdown && (
+                <div className="absolute top-full left-0 w-full bg-white border border-gray-300 mt-1 p-2 rounded">
+                  <input
+                    type="text"
+                    placeholder="Search tags..."
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                    className="w-full mb-2 p-2 border border-gray-300 rounded"
+                  />
+                  <div className="grid grid-cols-2 gap-4">
+                    {filteredTags.map((tag, index) => (
+                      <div key={index} className="flex items-center">
+                        <input
+                          type="checkbox"
+                          id={`tag${index}`}
+                          value={tag}
+                          checked={selectedTags.includes(tag)}
+                          onChange={() => handleTagSelection(tag)}
+                          className="mr-2"
+                        />
+                        <label htmlFor={`tag${index}`}>{tag}</label>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+          
+          {/* ... (existing form fields for email, userId, and password) */}
+          <h2 className="text-4xl font-bold mb-4 items-center">
+              Sign Up
+            </h2>
+          
+          <div className="rounded-md shadow-sm -space-y-px">
+            <div>
+              <label htmlFor="email-address" className="sr-only">
+                Email address
+              </label>
+              <input
+                id="email-address"
+                name="email"
+                type="email"
+                autoComplete="email"
+                required
+                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                placeholder="Email address"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </div>
+            <div>
+              <label htmlFor="id" className="sr-only">
+                ID
+              </label>
+              <input
+                id="id"
+                name="id"
+                type="text"
+                autoComplete="id"
+                required
+                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                placeholder="ID"
+                value={userId}
+                onChange={(e) => setuserId(e.target.value)}
+              />
+            </div>
+            <div>
+              <label htmlFor="password" className="sr-only">
+                Password
+              </label>
+              <input
+                id="password"
+                name="password"
+                type="password"
+                autoComplete="current-password"
+                required
+                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                placeholder="Password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+            </div>
+            <div>
+          <label htmlFor="college" className="sr-only">
+            College
+          </label>
+          <input
+            id="college"
+            name="college"
+            type="text"
+            autoComplete="college"
+            required
+            className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+            placeholder="College"
+            value={college}
+            onChange={(e) => setCollege(e.target.value)}
+          />
+        </div>
+        <div>
+          <label htmlFor="dateOfBirth" className="sr-only">
+            Date of Birth
+          </label>
+          <input
+            id="dateOfBirth"
+            name="dateOfBirth"
+            type="date"
+            autoComplete="dateOfBirth"
+            required
+            className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+            placeholder="Date of Birth"
+            value={dateOfBirth}
+            onChange={(e) => setDateOfBirth(e.target.value)}
+          />
+        </div>
+        <div>
+      {/* Gender Selection */}
+      <div className="flex items-center mb-4">
+        <span className="mr-2">Gender:</span>
+        <label>
+          <input
+            type="checkbox"
+            value="male"
+            checked={gender === 'male'}
+            onChange={() => handleGenderSelection('male')}
+          />
+          Male
+        </label>
+        <label>
+          <input
+            type="checkbox"
+            value="female"
+            checked={gender === 'female'}
+            onChange={() => handleGenderSelection('female')}
+          />
+          Female
+        </label>
+      </div>
+
+      
+    </div>
+        <div>
+          <label htmlFor="level" className="sr-only">
+            Level
+          </label>
+          <input
+            id="level"
+            name="level"
+            type="text"
+            autoComplete="level"
+            required
+            className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+            placeholder="Level"
+            value={level}
+            onChange={(e) => setLevel(e.target.value)}
+          />
+        </div>
+          </div>
+{/* Signup Button */}
+<div >
+            <button
+              type="submit"
+              className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-red-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+            >
+              Sign up
+            </button>
+          </div>
+          
+          
+        </form>
+      </div>
+    </div>
+  );
+}
+
+export default Signup;
+
+
+
+
+<Link  to='/home' element={<Home/>} className="p-3 ">Home</Link>
+   <Link  to='/about' element={<About/>} className="p-3 ">About</Link>
+   <Link  to='/contactus' element={<Contact/> }className="p-3 ">Contact us</Link>
+    <Link  to='/login' element={<Login/>} className="px-4 py-2 bg-black text-white animate-pulse rounded-full ">Login</Link>
+
+
+
+ const options = {
+    particles: {
+      number: {
+        value: 40,
+        density: {
+          enable: true,
+          area: 800
+        }
+      },
+      color: {
+        value: ["#E74C3C"]
+      },
+      shape: {
+        type: "circle"
+      },
+      opacity: {
+        value: 1
+      },
+      size: {
+        value: { min: 3, max: 7 }
+      },
+      links: {
+        enable: true,
+        distance: 150,
+        color: "#808080",
+        opacity: 0.4,
+        width: 1
+      },
+      move: {
+        enable: true,
+        speed: 1,
+        direction: "none",
+        random: false,
+        straight: false,
+        outModes: "out"
+      }
+    },
+    interactivity: {
+      events: {
+        onHover: {
+          enable: true,
+          mode: "grab"
+        },
+        onClick: {
+          enable: false,
+          mode: ""
+        }
+      },
+      modes: {
+        grab: {
+          distance: 140,
+          links: {
+            opacity: 1
+          }
+        },
+        push: {
+          quantity: 2
+        }
+      }
+    }
+  };
+  const particlesInit = useCallback(async (engine) => {
+    await loadFull(engine);
+  }, []);
+
+
+       {/* <Particles options={options} init={particlesInit} /> */}
+
+
+      <Routes>
+        <Route path="/login" element={<Login/>}/>
+        <Route path="/Home" element={<Home/>}/>
+        <Route path="/signup" element={<Signup/>}/>
+        <Route path="/contactus" element={<Contact/>}/>
+        <Route path="/about" element={<About/>}/>
+        <Route path="/profile" element={<Profile/>}/>
+        <Route path="/matching" element={<Matching/>}/>
+        <Route path="/ranking" element={<Ranking/>}/>
+        <Route path="/schedule" element={<Schedule/>}/>
+      
+      </Routes>

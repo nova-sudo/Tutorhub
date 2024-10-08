@@ -1,0 +1,228 @@
+@import url('https://fonts.googleapis.com/css2?family=Nova+Mono&family=Pixelify+Sans:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Flow+Rounded&family=Nova+Mono&family=Pixelify+Sans:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Titillium+Web&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=League+Gothic&family=Righteous&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=League+Gothic&family=Righteous&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Six+Caps&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+.home__container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.home__container > * {
+  margin-bottom: 10px;
+}
+.home__header {
+  margin-bottom: 30px;
+}
+.username__input {
+  padding: 10px;
+  width: 50%;
+}
+.home__cta {
+  width: 200px;
+  padding: 10px;
+  font-size: 26px;
+  cursor: pointer;
+  background-color: #607eaa;
+  color: #f9f5eb;
+  outline: none;
+  border: none;
+  border-radius: 5px;
+}
+.chat {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  
+}
+.chat__sidebar {
+  height: 100%;
+  background-color: #f9f5eb;
+  flex: 0.2;
+  padding: 20px;
+  border-right: 1px solid #fdfdfd;
+  font-size: 24px;
+}
+.chat__main {
+  height: 100%;
+  flex: 0.8;
+  font-size: 24px;
+}
+.chat__header {
+  margin: 30px 0 20px 0;
+  font-size: 24px;
+}
+.chat__users > * {
+  margin-bottom: 10px;
+  color: #607eaa;
+  font-size: 24px;
+}
+.online__users > * {
+  margin-bottom: 10px;
+  color: rgb(238, 102, 102);
+  font-style: italic;
+  font-size: 24px;
+}
+.chat__mainHeader {
+  width: 100%;
+  height: 10vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+  background-color: #f9f5eb;
+}
+.leaveChat__btn {
+  padding: 10px;
+  width: 150px;
+  border: none;
+  outline: none;
+  background-color: #d1512d;
+  cursor: pointer;
+  color: #eae3d2;
+}
+.message__container {
+  width: 100%;
+  height: 60vh;
+  background-color: #fff;
+  padding: 20px;
+  overflow-y: scroll;
+}
+
+.message__container > * {
+  margin-bottom: 10px;
+}
+.chat__footer {
+  padding: 0px;
+  background-color: #f9f5eb;
+  height: 10vh;
+}
+.form {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.message {
+  width: 80%;
+  height: 100%;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  outline: none;
+  padding: 15px;
+}
+.sendBtn {
+  width: 150px;
+  background-color: green;
+  padding: 10px;
+  border: none;
+  outline: none;
+  color: #eae3d2;
+  cursor: pointer;
+}
+.sendBtn:hover {
+  background-color: rgb(129, 201, 129);
+}
+.message__recipient {
+  background-color: #f5ccc2;
+  width: 300px;
+  padding: 10px;
+  border-radius: 10px;
+  font-size: 25px;
+}
+.message__sender {
+  background-color: rgb(194, 243, 194);
+  max-width: 300px;
+  padding: 10px;
+  border-radius: 10px;
+  margin-left: auto;
+  font-size: 25px;
+}
+.message__chats > p {
+  font-size: 23px;
+}
+.sender__name {
+  text-align: right;
+}
+.message__status {
+  position: fixed;
+  bottom: 50px;
+  font-size: 23px;
+  font-style: italic;
+}
+
+/* Hide the bottom scrollbar */
+body {
+  overflow-x: hidden;
+}
+
+/* Customize the vertical scrollbar */
+/* For Webkit-based browsers like Chrome and Safari */
+::-webkit-scrollbar {
+  width: 6px; /* thinner scrollbar */
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: transparent; /* transparent background */
+  border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #7DF9FF; /* #7DF9FF color for the scrollbar handle */
+  border-radius: 10px;
+}
+
+/* For Firefox */
+/* Track */
+html {
+  scrollbar-width: thin;
+  scrollbar-color: #7DF9FF transparent; /* set handle color and track background */
+}
+
+/* Handle */
+html::-moz-scrollbar-thumb {
+  background: #7DF9FF; /* #7DF9FF color for the scrollbar handle in Firefox */
+  border-radius: 10px;
+}
+
+
+
+@keyframes hoverUpDown {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px); /* Adjust the vertical distance */
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+/* Apply animation to each letter within the anchor tag */
+a.text-5xl {
+  display: inline-block; /* Ensures inline-block elements can be transformed */
+}
+
+a.text-5xl span {
+  display: inline-block;
+  animation: hoverUpDown 1s infinite; /* Adjust animation duration as needed */
+}
